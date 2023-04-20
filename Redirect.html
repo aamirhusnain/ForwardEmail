@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <link href="MessageRead.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js" ></script>-->
+    <!--  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>-->
+    <script src="https://unpkg.com/libphonenumber-js@1.9.6/bundle/libphonenumber-max.js"></script>
+    <style>
+        @font-face {
+            font-family: "Passageway";
+            src: url("/addin/Fonts/PassagewayLight.otf");
+        }
+
+        md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-active md-icon, md-tabs .md-tab.md-active md-icon, md-tabs.md-default-theme .md-tab.md-focused, md-tabs .md-tab.md-focused, md-tabs.md-default-theme .md-tab.md-focused md-icon, md-tabs .md-tab.md-focused md-icon {
+            color: #0078FF;
+        }
+
+        md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+            color: #0078FF !important;
+            background-color: #0078FF !important;
+        }
+
+        md-tabs-canvas.md-paginated {
+            margin: 0;
+        }
+
+        .md-tab {
+            font-size: 12px !important;
+            width: 170px !important;
+            line-height: 15px !important;
+            white-space: pre-wrap !important;
+            margin-left: -37px !important
+        }
+
+        .md-button.md-default-theme.md-accent[disabled], .md-button.md-accent[disabled], .md-button.md-default-theme.md-fab[disabled], .md-button.md-fab[disabled], .md-button.md-default-theme.md-raised[disabled], .md-button.md-raised[disabled], .md-button.md-default-theme.md-warn[disabled], .md-button.md-warn[disabled], .md-button.md-default-theme[disabled], .md-button[disabled] {
+            color: white !important;
+            background-color: rgb(63,81,181);
+            cursor: default;
+        }
+
+        md-ink-bar {
+            position: absolute;
+            left: auto;
+            right: auto;
+            bottom: 0;
+            height: 2px;
+            width: 110px;
+            margin-left: 30px;
+        }
+
+        .md-select-value .md-select-icon {
+            display: block;
+            align-items: flex-end;
+            text-align: end;
+            width: 24px;
+            margin: 0px 15px 0px 0px !important;
+            -webkit-transform: translate3d(0,-2px,0);
+            transform: translate3d(0,-2px,0);
+            font-size: 1.2rem;
+        }
+
+        md-select {
+            width: 123px !important
+        }
+
+        .md-select-value > span:not(.md-select-icon) .md-text {
+            display: inline;
+            padding: 0px !important;
+        }
+
+        md-select.md-default-theme .md-select-value, md-select .md-select-value {
+            border-bottom-color: rgba(0,0,0,0.12);
+        }
+
+        md-input-container .md-placeholder, md-input-container label:not(.md-no-float):not(.md-container-ignore) {
+            padding-bottom: 3px !important;
+        }
+
+        md-tabs-canvas.md-paginated {
+            margin: 0 0 0 22px !important;
+        }
+
+        md-tabs-wrapper md-next-button, md-tabs-wrapper md-prev-button {
+            height: unset !important;
+            width: unset !important;
+            position: unset !important;
+            top: unset !important;
+            -webkit-transform: unset !important;
+            transform: unset !important;
+            line-height: unset !important;
+            z-index: unset !important;
+            cursor: unset !important;
+            font-size: unset !important;
+            background: unset !important;
+            transition: unset !important;
+        }
+
+            md-tabs-wrapper md-next-button.md-disabled, md-tabs-wrapper md-prev-button.md-disabled {
+                opacity: 0 !important;
+                cursor: unset !important;
+            }
+
+        md-progress-linear.md-default-theme .md-bar, md-progress-linear .md-bar {
+            background-color: #1E88E5 !important;
+        }
+
+
+
+
+        .radio-toolbar input[type="radio"] {
+            display: none;
+        }
+
+
+        .radioChecked {
+            background-color: none !important;
+            padding: 10px 10px 5px 10px;
+            border-radius: 50px;
+            color: white
+        }
+
+            .radioChecked:hover {
+                background-color: #adacac !important;
+                padding: 10px 10px 5px 10px;
+                border-radius: 50px;
+                color: white
+            }
+
+        .radio-toolbar input[type="radio"]:checked + .radioChecked {
+            background-color: cornflowerblue !important;
+            padding: 10px 10px 5px 10px;
+            border-radius: 50px;
+            color: white
+        }
+    </style>
+</head>
+<body ng-app="Forworder" ng-controller="ForworderCtrl" ng-style="myBgColor()" id="body">
+
+    <!--Angular Material requires Angular.js Libraries-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+    <script src="https://unpkg.com/angular-ui-mask/dist/mask.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+</body>
+
+</html>
+
+<script>
+
+    var app = angular.module('Forworder', ['ui.mask', 'ngMaterial', 'ngRoute']);
+
+
+    app.controller('ForworderCtrl', function ($http, $timeout, $scope, $window, $location, $mdDialog) {
+        var address_Link = window.location.href;
+        console.log(address_Link)
+        var address_arr = address_Link.split("=");
+        var address_Token = address_arr[1];
+        var Id_Token = address_Token.split("&");
+        $scope.access_token = Id_Token[0];
+        console.log(Id_Token)
+
+        Office.onReady(function (appInfo) {
+            Office.context.ui.messageParent(JSON.stringify($scope.access_token));
+
+        })
+
+
+
+    })
+
+</script>

@@ -1,0 +1,127 @@
+﻿
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+    <title></title>
+
+    <link href="MessageRead.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <!--Angular Material requires Angular.js Libraries-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+
+
+
+
+
+  
+
+
+</head>
+<body ng-app="forwordApp" ng-controller="forwordAppCtrl" id="body">
+
+    <div id="StartProgressLinear" style="z-index: 100 !important;position:fixed;display:none; margin:250px 7% 0 7%; width: 85%;">
+        <md-progress-linear md-mode="Indeterminate" ng-disabled="showProgressLinear"></md-progress-linear>
+        <div style="margin: 7px auto 0 auto;"><span>{{progressText}}</span></div>
+    </div>
+
+    <div id="ProgressBgDiv" style=" position: fixed; top: 0; left: 0; background-color: #ffffff; opacity: 0.8; display: none; width: 100%; height: 100%; z-index: 99 !important;"></div>
+
+
+    <div ng-hide="LoginDiv" class="container">
+
+
+        <md-button class="md-raised md-primary" style=" width: 59vh; display: flex; " ng-click="login()">
+            <img src="Images/microsoft.png" class="msimage" />MicroSoft Sign-in
+        </md-button>
+
+    </div>
+    <div ng-hide="MainDiv">
+        <md-card>
+            <md-content layout-padding>
+                <form name="projectForm">
+
+                    <md-input-container class="md-block">
+                        <label>Customer</label>
+                        <input ng-model="Customer" />
+
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Project</label>
+                        <input ng-model="Project" />
+
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Country</label>
+                        <input ng-model="Country" />
+
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Recipient</label>
+                        <input type="email" ng-model="toRecipient" />
+
+                    </md-input-container>
+                    <md-button class="md-raised md-primary" ng-disabled="(!toRecipient || !Customer)" ng-click="forword_Mail()">Forword Mail</md-button>
+
+                    <md-button class="md-raised md-primary" ng-click="SignP_Out()">sign out</md-button>
+
+                </form>
+            </md-content>
+
+
+
+        </md-card>
+    </div>
+
+    <script src="Home.js">
+
+
+
+    </script>
+
+
+
+</body>
+</html>
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .msimage {
+        height: 26px;
+        margin-left: 12px;
+        margin-right: 26px;
+        display: revert;
+    }
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
