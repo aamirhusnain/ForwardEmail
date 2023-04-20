@@ -127,7 +127,7 @@ app.controller('forwordAppCtrl', function ($scope, $mdToast, $log, $mdDialog) {
 
         let dialog;
         $scope.login = function () {
-            let a = "https://login.microsoftonline.com/bb7a26e1-3781-4e86-a15c-7e2b0f934951/oauth2/v2.0/authorize?client_id=3f623ba6-ead5-4cd3-9f64-d01ea250f581&response_type=token&redirect_uri=https://localhost:44397/Template/Redirect.html&scope=user.read%20mail.readwrite%20mail.send&response_mode=fragment&state=12345&nonce=678910";
+            let a = "https://login.microsoftonline.com/bb7a26e1-3781-4e86-a15c-7e2b0f934951/oauth2/v2.0/authorize?client_id=3f623ba6-ead5-4cd3-9f64-d01ea250f581&response_type=token&redirect_uri=https://aamirhusnain.github.io/ForwardEmail/Redirect.html&scope=user.read%20mail.readwrite%20mail.send&response_mode=fragment&state=12345&nonce=678910";
             // let a = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=3f623ba6-ead5-4cd3-9f64-d01ea250f581&response_type=token&redirect_uri=https://localhost:44397/Template/Redirect.html&scope=user.read%20mail.readwrite%20mail.send&response_mode=fragment&state=12345&nonce=678910";
             //let a = "https://localhost:44397/Template/Redirect.html";
 
